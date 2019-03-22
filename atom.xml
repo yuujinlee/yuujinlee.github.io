@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="skrdacyan.com/"/>
-  <updated>2019-03-21T12:48:55.823Z</updated>
+  <updated>2019-03-22T02:23:44.263Z</updated>
   <id>skrdacyan.com/</id>
   
   <author>
@@ -21,9 +21,9 @@
     <link href="skrdacyan.com/2019/03/21/newpaper/"/>
     <id>skrdacyan.com/2019/03/21/newpaper/</id>
     <published>2019-03-21T01:36:58.000Z</published>
-    <updated>2019-03-21T12:48:55.823Z</updated>
+    <updated>2019-03-22T02:23:44.263Z</updated>
     
-    <content type="html"><![CDATA[<p>#Welcome to my blog#<br>首先，声明：  </p><pre><code>刘员赫是个大傻吊！~QwQ</code></pre>]]></content>
+    <content type="html"><![CDATA[<p>#Welcome to my blog#<br>首先，声明：  </p><pre><code>刘员赫是个大傻吊！~QwQ</code></pre><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>]]></content>
     
     <summary type="html">
     
@@ -31,7 +31,7 @@
       
         &lt;p&gt;#Welcome to my blog#&lt;br&gt;首先，声明：  &lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;刘员赫是个大傻吊！~QwQ
-&lt;/code&gt;&lt;/pre&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;
       
     
     </summary>
