@@ -7,8 +7,61 @@
     error: '复制错误',
     noSupport: '浏览器不支持'
   }
-} </script></head><body><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar"><div class="author-info"><div class="author-info__avatar text-center"><img src="/img/avatar.png"></div><div class="author-info__name text-center">长今lee</div><div class="author-info__description text-center">初めまして、よろしくお願いします！</div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">文章</span><span class="pull-right">2</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">标签</span><span class="pull-right">1</span></a></div></div></div><nav class="no-bg" id="nav"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">长今leeの博客</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus"><a class="site-page" href="/">Home</a><a class="site-page" href="/archives">Archives</a><a class="site-page" href="/tags">Tags</a><a class="site-page" href="/categories">Categories</a></span></div><div id="site-info"><div id="site-title">长今leeの博客</div><div id="site-sub-title"></div></div></nav><div id="content-outer"><div class="layout" id="content-inner"><div class="recent-post-item article-container"><a class="article-title" href="/2019/03/21/初次见面/">初次见面</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2019-03-21</time><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fa fa-tag article-meta__icon" aria-hidden="true"></i><a class="article-meta__tags" href="/tags/Hello-World/">Hello World!</a></span><div class="content"><p>##初次见面，请多关照##<br><figure class="highlight plain"><figcaption><span>RL</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">一个人的故事，两个人的江湖~</span><br></pre></td></tr></table></figure></p>
-</div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2019/03/21/hello-world/">Hello World</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2019-03-21</time><div class="content"><p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
+} </script></head><body><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar"><div class="author-info"><div class="author-info__avatar text-center"><img src="/img/avatar.png"></div><div class="author-info__name text-center">长今lee</div><div class="author-info__description text-center">初めまして、よろしくお願いします！</div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">文章</span><span class="pull-right">3</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">标签</span><span class="pull-right">2</span></a></div></div></div><nav class="no-bg" id="nav"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">长今leeの博客</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus"><a class="site-page" href="/">Home</a><a class="site-page" href="/archives">Archives</a><a class="site-page" href="/tags">Tags</a><a class="site-page" href="/categories">Categories</a></span></div><div id="site-info"><div id="site-title">长今leeの博客</div><div id="site-sub-title"></div></div></nav><div id="content-outer"><div class="layout" id="content-inner"><div class="recent-post-item article-container"><a class="article-title" href="/2019/04/10/jQuery转换树形结构/">jQuery转换树形结构</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2019-04-10</time><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fa fa-tag article-meta__icon" aria-hidden="true"></i><a class="article-meta__tags" href="/tags/jQuery转换树形结构/">jQuery转换树形结构</a></span><div class="content"><pre><code>/**
+ * [convert 树形结构转换]
+ * @param  {[object]} rows [对象]
+ * @return {[object]} nodes [对象]
+ */
+function convert(rows){
+    // 排除子节点
+    function exists(rows, pid){
+        for(var i=0; i&lt;rows.length; i++){
+            if (rows[i].menu_id == pid) return true;
+        }
+        return false;
+    }
+    var nodes = [];
+    // get the top level nodes 根节点
+    for(var i=0; i&lt;rows.length; i++){
+        var row = rows[i];
+        if (!exists(rows, row.pid)){
+            nodes.push({
+                menu_id:row.menu_id,
+                menu_name:row.menu_name,
+                pid:row.pid,
+                url:row.url,
+                menu_type:row.menu_type,
+                icon:row.icon,
+                target:row.target
+            });
+        }
+    }
+    var toDo = [];
+    // var toDo = nodes；toDo和nodes里面存的同一个对象：关联！
+    for(var i=0; i&lt;nodes.length; i++){
+        toDo.push(nodes[i]);
+    }
+    while(toDo.length){
+        var node = toDo.shift();    // the parent node  关联！
+        // get the list nodes
+        for(var i=0; i&lt;rows.length; i++){
+            var row = rows[i];
+            if (row.pid == node.menu_id){
+                var child = {menu_id:row.menu_id,menu_name:row.menu_name,pid:row.pid,url:row.url,menu_type:row.menu_type,icon:row.icon,target:row.target};
+                if (node.list){
+                    node.list.push(child);
+                } else {
+                    node.list = [child];
+                }
+                toDo.push(child);
+            }
+        }
+    }
+    return nodes;
+}
+</code></pre></div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2019/03/21/初次见面/">初次见面</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2019-03-21</time><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fa fa-tag article-meta__icon" aria-hidden="true"></i><a class="article-meta__tags" href="/tags/Hello-World/">Hello World!</a></span><div class="content"><p>初次见面，请多关照 </p>
+<pre><code>一个人的故事，两个人的江湖~
+</code></pre></div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2019/03/21/hello-world/">Hello World</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2019-03-21</time><div class="content"><p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
 <h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
 <p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
 <h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>

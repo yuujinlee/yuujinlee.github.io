@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="skrdacyan.com/"/>
-  <updated>2019-03-22T03:03:02.813Z</updated>
+  <updated>2019-04-10T02:44:19.851Z</updated>
   <id>skrdacyan.com/</id>
   
   <author>
@@ -17,19 +17,50 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>初次见面</title>
-    <link href="skrdacyan.com/2019/03/21/%E5%88%9D%E6%AC%A1%E8%A7%81%E9%9D%A2/"/>
-    <id>skrdacyan.com/2019/03/21/初次见面/</id>
-    <published>2019-03-21T01:36:58.000Z</published>
-    <updated>2019-03-22T03:03:02.813Z</updated>
+    <title>jQuery转换树形结构</title>
+    <link href="skrdacyan.com/2019/04/10/jQuery%E8%BD%AC%E6%8D%A2%E6%A0%91%E5%BD%A2%E7%BB%93%E6%9E%84/"/>
+    <id>skrdacyan.com/2019/04/10/jQuery转换树形结构/</id>
+    <published>2019-04-10T02:42:48.000Z</published>
+    <updated>2019-04-10T02:44:19.851Z</updated>
     
-    <content type="html"><![CDATA[<p>##初次见面，请多关照##<br><figure class="highlight plain"><figcaption><span>RL</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">一个人的故事，两个人的江湖~</span><br></pre></td></tr></table></figure></p>]]></content>
+    <content type="html"><![CDATA[<pre><code>/** * [convert 树形结构转换] * @param  {[object]} rows [对象] * @return {[object]} nodes [对象] */function convert(rows){    // 排除子节点    function exists(rows, pid){        for(var i=0; i&lt;rows.length; i++){            if (rows[i].menu_id == pid) return true;        }        return false;    }    var nodes = [];    // get the top level nodes 根节点    for(var i=0; i&lt;rows.length; i++){        var row = rows[i];        if (!exists(rows, row.pid)){            nodes.push({                menu_id:row.menu_id,                menu_name:row.menu_name,                pid:row.pid,                url:row.url,                menu_type:row.menu_type,                icon:row.icon,                target:row.target            });        }    }    var toDo = [];    // var toDo = nodes；toDo和nodes里面存的同一个对象：关联！    for(var i=0; i&lt;nodes.length; i++){        toDo.push(nodes[i]);    }    while(toDo.length){        var node = toDo.shift();    // the parent node  关联！        // get the list nodes        for(var i=0; i&lt;rows.length; i++){            var row = rows[i];            if (row.pid == node.menu_id){                var child = {menu_id:row.menu_id,menu_name:row.menu_name,pid:row.pid,url:row.url,menu_type:row.menu_type,icon:row.icon,target:row.target};                if (node.list){                    node.list.push(child);                } else {                    node.list = [child];                }                toDo.push(child);            }        }    }    return nodes;}</code></pre>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;p&gt;##初次见面，请多关照##&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;figcaption&gt;&lt;span&gt;RL&lt;/span&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;
+        &lt;pre&gt;&lt;code&gt;/**
+ * [convert 树形结构转换]
+ * @param  {[object]} rows [对象]
+ * @return {[object]} nodes [对象]
+ */
+function convert(rows){
+    // 排除子节点
+      
+    
+    </summary>
+    
+    
+      <category term="jQuery转换树形结构" scheme="skrdacyan.com/tags/jQuery%E8%BD%AC%E6%8D%A2%E6%A0%91%E5%BD%A2%E7%BB%93%E6%9E%84/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>初次见面</title>
+    <link href="skrdacyan.com/2019/03/21/%E5%88%9D%E6%AC%A1%E8%A7%81%E9%9D%A2/"/>
+    <id>skrdacyan.com/2019/03/21/初次见面/</id>
+    <published>2019-03-21T01:36:58.000Z</published>
+    <updated>2019-04-10T02:41:02.371Z</updated>
+    
+    <content type="html"><![CDATA[<p>初次见面，请多关照 </p><pre><code>一个人的故事，两个人的江湖~</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;初次见面，请多关照 &lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;一个人的故事，两个人的江湖~
+&lt;/code&gt;&lt;/pre&gt;
       
     
     </summary>
